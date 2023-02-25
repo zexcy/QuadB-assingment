@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HODLINFO</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <!-- <header>
+    <style>
+      header {
+        background-color: #111;
+        color: #fff;
+        padding: 20px;
+      }
+
+      nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      nav li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      nav li:last-child {
+        margin-right: 0;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      nav a:hover {
+        color: #ffbf00;
+      }
+    </style>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header> -->
+  <header>
+    <style>
+      header {
+        background-color: #1f1f1f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+        margin-right: 10px;
+      }
+
+      .logo-text {
+        color: #0066ff;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .dropdowns {
+        display: flex;
+        justify-content: center;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      .dropbtn {
+        background-color: transparent;
+        color: #fff;
+        font-size: 1.2rem;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #1f1f1f;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        top: 30px;
+      }
+
+      .dropdown-content a {
+        color: #fff;
+        padding: 10px;
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .telegram-btn {
+        background-color: #0066ff;
+        border: none;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .telegram-btn:hover {
+        background-color: #0052cc;
+      }
+    </style>
+    <div class="logo-container">
+      <!-- <img src="path/to/hodinfo-logo.png" alt="Hodinfo logo" /> -->
+      <h1>Hodinfo.com</h1>
+    </div>
+    <div class="dropdown-container">
+      <div class="dropdown">
+        <button class="dropbtn">INR</button>
+        <div class="dropdown-content">
+          <a href="#">Option 1</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">BTC</button>
+        <div class="dropdown-content">
+          <a href="#">Option 1</a>
+          <a href="#">Option 2</a>
+          <a href="#">Option 3</a>
+        </div>
+      </div>
+    </div>
+    <button class="telegram-btn">Connect Telegram</button>
+  </header>
+
+  <body>
+    <style>
+      body {
+        background-color: #222;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #444;
+      }
+
+      tr:hover {
+        background-color: #555;
+      }
+
+      .container {
+        margin: 50px auto;
+        max-width: 800px;
+      }
+    </style>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Last</th>
+          <th>Buy Price</th>
+          <th>Sell Price</th>
+          <th>Volume</th>
+          <th>Base Unit</th>
+        </tr>
+      </thead>
+      <tbody id="tickers"></tbody>
+    </table>
+
+    <script>
+      fetch("/tickers")
+        .then((res) => res.json())
+        .then((data) => {
+          const tbody = document.querySelector("#tickers");
+          data.forEach((ticker, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${ticker.name}</td>
+              <td>${ticker.last}</td>
+              <td>${ticker.buy}</td>
+              <td>${ticker.sell}</td>
+              <td>${ticker.volume}</td>
+              <td>${ticker.base_unit}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch((err) => console.log(err));
+    </script>
+  </body>
+</html>
